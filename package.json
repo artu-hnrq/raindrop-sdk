@@ -2,10 +2,11 @@
   "name": "raindrop-sdk",
   "version": "0.1.0",
   "description": "Raindrop.io Typescript SDK",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "bundle": "swagger-cli bundle docs/openapi/__index__.yaml --outfile _build/openapi.yaml --type yaml"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,11 @@
   },
   "homepage": "https://github.com/artu-hnrq/raindrop-sdk#readme",
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.6.0",
+    "swagger-cli": "^4.0.4",
     "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "axios": "^1.4.0"
   }
 }

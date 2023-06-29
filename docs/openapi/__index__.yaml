@@ -1,0 +1,87 @@
+openapi: 3.0.0
+
+info:
+  title: Raindrop API
+  description: Build and integrate tools and applications to help members manage their bookmarks on Raindrop.io
+  version: 1.0.4
+
+servers:
+  - url: https://api.raindrop.io/rest/v1/
+    description: Production server (uses live data).
+
+paths:
+  /collections:
+    get:
+      summary: Get root collections.
+      tags: ["Collection"]
+      operationId: "list_collections"
+      responses:
+        '200': 
+          description: A JSON array of Collection objects
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  items:
+                    type: array
+                    items:
+                      $ref: './schemas/__index__.yaml#/Collection'
+  /collection/{id}:
+    get:
+      summary: Get a collection.
+      tags: ["Collections"]
+      operationId: "retrieve_collection"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Target collection id.
+          schema:
+            type : integer
+      responses:
+        '200':
+          description: A Collection object.
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  item:
+                    $ref: './schemas/__index__.yaml#/Collection'
+  /raindrops/{collectionId}:
+    get:
+      summary: List Raindrops in target Collection.
+      tags: ["Raindrops"]
+      operationId: "list_raindrops"
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          description: Target collection id.
+          schema:
+            type : integer
+      responses:
+        '200':
+          description: A JSON array of Raindrop objects.
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  item:
+                    $ref: './schemas/__index__.yaml#/Raindrop'
+
+components:
+  schemas:
+      $ref: './schemas/__index__.yaml'
+

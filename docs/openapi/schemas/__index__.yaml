@@ -1,0 +1,120 @@
+Raindrop:
+      $ref: './raindrop.yaml'
+
+Collection:
+  type: object
+  properties:
+    _id: 
+      type: integer
+      example: 32688179
+    title: 
+      type: string
+      example: Learnlog
+    description: 
+      type: string
+      example: Join @artu-hnrq through the eternal learning path that is to be a software developer!
+    public:
+      type: boolean 
+      example: true
+    view:
+      type: string 
+      example: simple
+    count:
+      type: integer
+      example: 100
+    cover:
+      type: string
+      example: https://up.raindrop.io/collection/thumbs/326/881/79/learnlog.png
+    expanded:
+      type: boolean
+      example: false
+    user:
+      $ref: '#/UserRef'
+    creatorRef:
+      $ref: '#/CreatorRef'
+    created:
+      $ref: '#/Datetime'
+    lastUpdate:
+      $ref: '#/Datetime'
+    lastAction:
+      $ref: '#/Datetime'
+    sort:
+      type: integer
+      example: 0
+    slug:
+      type: string
+      example: learnlog
+    color:
+      type: string
+      example: #6e6f6f
+    collaborators:
+      type: object
+      properties:
+        '$ref': 
+          type: string
+          example: collaborators
+        $id:
+          type: string
+          example: 642097cc875838ae00d089e2
+    access:
+      type: object
+      properties:
+        for: 
+          type: integer
+          example: 1463946
+        level:
+          type: integer
+          example: 4
+        root: 
+          type: boolean
+          example: true
+        draggable:
+          type: boolean
+          example: true
+    author:
+      type: boolean
+      example: true
+
+UserRef:
+  type: object
+  properties:
+    $id: 
+      type: integer
+      example: 1463946
+    "$ref":
+      type: string
+      example: users
+
+CreatorRef:
+  type: object
+  properties:
+    _id: 
+      type: integer
+      example: 1463946
+    name: 
+      type: string
+      example: artu-hnrq
+    email:
+      type: string
+    avatar:
+      type: string
+      example: https://up.raindrop.io/user/avatars/146/394/6/face.jpg
+
+CollectionRef:
+  type: object
+  properties:
+    "$ref": 
+      type: string
+      example: collections
+    $id:
+      type: integer
+      example: 32688179
+    oid:
+      type: integer
+      example: 32688179
+
+Datetime:
+  type: string
+  format: date-time
+  example: 2023-06-22T00:42:04.000Z
+    

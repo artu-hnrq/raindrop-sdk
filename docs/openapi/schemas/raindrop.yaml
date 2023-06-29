@@ -1,0 +1,87 @@
+type: object
+properties:
+  _id: 
+    type: integer
+    example: 595654542
+  link:
+    type: string
+    example: https://github.com/raindropio/app
+  title:
+    type: string
+    example: artu-hnrq starred raindropio/app on Github!
+  excerpt: 
+    type: string
+    example: Mono repo for Raindrop.io web app, browser extension and desktop app
+  note:
+    type: string
+    example:
+  type:
+    type: string
+    example: link
+  user:
+    $ref: './__index__.yaml#/UserRef'
+  cover:
+    type: string
+    example: https://rdl.ink/render/https%3A%2F%2Fgithub.com%2Fraindropio%2Fapp
+  media:
+    type: array
+    items:
+      type: object
+      properties:
+        link:
+          type: string
+          example: https://rdl.ink/render/https%3A%2F%2Fgithub.com%2Fraindropio%2Fapp
+        type:
+          type: string
+          example: image
+        screenshot:
+          type: boolean
+          example: true
+  tags:
+    type: array
+    items:
+      type: string
+      example: source-code
+  important: 
+    type: boolean
+    example: false
+  removed: 
+    type: boolean
+    example: false
+  collection: 
+    $ref: './__index__.yaml#/CollectionRef'
+  created: 
+    $ref: './__index__.yaml#/Datetime'
+  lastUpdate:
+    $ref: './__index__.yaml#/Datetime'
+  domain: 
+    type: string
+    example: github.com
+  creatorRef: 
+    $ref: './__index__.yaml#/CreatorRef'
+  sort: 
+    type: integer
+    example: 0
+  highlights:
+    type: array
+    items:
+      type: object
+      properties:
+        _id: 
+          type: string
+          example: 6495c29d9f76b136887e0c9
+        text: 
+          type: string
+          example: Target changes the JavaScript version you are compiling to.
+        note: 
+          type: string
+          example:
+        created: 
+          $ref: './__index__.yaml#/Datetime'
+        lastUpdate: 
+          $ref: './__index__.yaml#/Datetime'
+        creatorRef: 
+          $ref: './__index__.yaml#/CreatorRef'
+  collectionId: 
+      type: integer
+      example: 32688179

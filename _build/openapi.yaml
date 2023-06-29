@@ -1,0 +1,284 @@
+openapi: 3.0.0
+info:
+  title: Raindrop API
+  description: Build and integrate tools and applications to help members manage their bookmarks on Raindrop.io
+  version: 1.0.4
+servers:
+  - url: 'https://api.raindrop.io/rest/v1/'
+    description: Production server (uses live data).
+paths:
+  /collections:
+    get:
+      summary: Get root collections.
+      tags:
+        - Collection
+      operationId: list_collections
+      responses:
+        '200':
+          description: A JSON array of Collection objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+  '/collection/{id}':
+    get:
+      summary: Get a collection.
+      tags:
+        - Collections
+      operationId: retrieve_collection
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Target collection id.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A Collection object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  item:
+                    $ref: '#/components/schemas/Collection'
+  '/raindrops/{collectionId}':
+    get:
+      summary: List Raindrops in target Collection.
+      tags:
+        - Raindrops
+      operationId: list_raindrops
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          description: Target collection id.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A JSON array of Raindrop objects.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  item:
+                    $ref: '#/components/schemas/Raindrop'
+components:
+  schemas:
+    Raindrop:
+      type: object
+      properties:
+        _id:
+          type: integer
+          example: 595654542
+        link:
+          type: string
+          example: 'https://github.com/raindropio/app'
+        title:
+          type: string
+          example: artu-hnrq starred raindropio/app on Github!
+        excerpt:
+          type: string
+          example: 'Mono repo for Raindrop.io web app, browser extension and desktop app'
+        note:
+          type: string
+          example: null
+        type:
+          type: string
+          example: link
+        user:
+          $ref: '#/components/schemas/UserRef'
+        cover:
+          type: string
+          example: 'https://rdl.ink/render/https%3A%2F%2Fgithub.com%2Fraindropio%2Fapp'
+        media:
+          type: array
+          items:
+            type: object
+            properties:
+              link:
+                type: string
+                example: 'https://rdl.ink/render/https%3A%2F%2Fgithub.com%2Fraindropio%2Fapp'
+              type:
+                type: string
+                example: image
+              screenshot:
+                type: boolean
+                example: true
+        tags:
+          type: array
+          items:
+            type: string
+            example: source-code
+        important:
+          type: boolean
+          example: false
+        removed:
+          type: boolean
+          example: false
+        collection:
+          $ref: '#/components/schemas/CollectionRef'
+        created:
+          $ref: '#/components/schemas/Datetime'
+        lastUpdate:
+          $ref: '#/components/schemas/Datetime'
+        domain:
+          type: string
+          example: github.com
+        creatorRef:
+          $ref: '#/components/schemas/CreatorRef'
+        sort:
+          type: integer
+          example: 0
+        highlights:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 6495c29d9f76b136887e0c9
+              text:
+                type: string
+                example: Target changes the JavaScript version you are compiling to.
+              note:
+                type: string
+                example: null
+              created:
+                $ref: '#/components/schemas/Datetime'
+              lastUpdate:
+                $ref: '#/components/schemas/Datetime'
+              creatorRef:
+                $ref: '#/components/schemas/CreatorRef'
+        collectionId:
+          type: integer
+          example: 32688179
+    Collection:
+      type: object
+      properties:
+        _id:
+          type: integer
+          example: 32688179
+        title:
+          type: string
+          example: Learnlog
+        description:
+          type: string
+          example: Join @artu-hnrq through the eternal learning path that is to be a software developer!
+        public:
+          type: boolean
+          example: true
+        view:
+          type: string
+          example: simple
+        count:
+          type: integer
+          example: 100
+        cover:
+          type: string
+          example: 'https://up.raindrop.io/collection/thumbs/326/881/79/learnlog.png'
+        expanded:
+          type: boolean
+          example: false
+        user:
+          $ref: '#/components/schemas/UserRef'
+        creatorRef:
+          $ref: '#/components/schemas/CreatorRef'
+        created:
+          $ref: '#/components/schemas/Datetime'
+        lastUpdate:
+          $ref: '#/components/schemas/Datetime'
+        lastAction:
+          $ref: '#/components/schemas/Datetime'
+        sort:
+          type: integer
+          example: 0
+        slug:
+          type: string
+          example: learnlog
+        color:
+          type: string
+          example: null
+        collaborators:
+          type: object
+          properties:
+            $ref:
+              type: string
+              example: collaborators
+            $id:
+              type: string
+              example: 642097cc875838ae00d089e2
+        access:
+          type: object
+          properties:
+            for:
+              type: integer
+              example: 1463946
+            level:
+              type: integer
+              example: 4
+            root:
+              type: boolean
+              example: true
+            draggable:
+              type: boolean
+              example: true
+        author:
+          type: boolean
+          example: true
+    UserRef:
+      type: object
+      properties:
+        $id:
+          type: integer
+          example: 1463946
+        $ref:
+          type: string
+          example: users
+    CreatorRef:
+      type: object
+      properties:
+        _id:
+          type: integer
+          example: 1463946
+        name:
+          type: string
+          example: artu-hnrq
+        email:
+          type: string
+        avatar:
+          type: string
+          example: 'https://up.raindrop.io/user/avatars/146/394/6/face.jpg'
+    CollectionRef:
+      type: object
+      properties:
+        $ref:
+          type: string
+          example: collections
+        $id:
+          type: integer
+          example: 32688179
+        oid:
+          type: integer
+          example: 32688179
+    Datetime:
+      type: string
+      format: date-time
+      example: 2023-06-22T00:42:04.000Z
